@@ -1,27 +1,42 @@
-const openModal = document.getElementsByClassName('js-open-modal');
-const header = document.getElementsByClassName('js-header');
-const modal = document.getElementsByClassName('js-modal');
-const closeModal = document.getElementsByClassName('js-close-modal');
+const openModal = document.querySelectorAll('.js-open-modal');
+const header = document.querySelector('.js-header');
+const modal = document.querySelector('.js-modal');
+const closeModal = document.querySelector('.js-close-modal');
+const contentModal = document.querySelector('.js-content-modal');
+// Открытие модалки по разным кнопкам с разным заголовком
 
-[...header[0].children].forEach(item => {
+const listTitle = {
+    'name-1': 'Серёжа',
+    'name-2': 'Антон',
+    'name-3': 'Никита',
+    'name-4': 'Наташа',
+    'name-5': 'Молчок',
+}
+
+openModal.forEach(item => {
     item.addEventListener('click', function() {
-        modal[0].classList.add('show');
-        if (item.dataset['firstModal']) {
-            modal[0].querySelector('h1').innerHTML = 'Серёжа'
-        } else if (item.dataset.hasOwnProperty('secondModal')) {
-            modal[0].querySelector('h1').innerHTML = 'Антон'
-        } else if (item.dataset.hasOwnProperty('thirdModal')) {
-            modal[0].querySelector('h1').innerHTML = 'Никита'
-        } else if (item.dataset.hasOwnProperty('fouthModal')) {
-            modal[0].querySelector('h1').innerHTML = 'Наташа'
-        } else if (item.dataset.hasOwnProperty('fiveModal')) {
-            modal[0].querySelector('h1').innerHTML = 'Молчок'
-        }
+        const title = item.dataset.modal;
+        const modalTitle = modal.querySelector('h1');
+        modalTitle.innerHTML = listTitle[title];
+        modal.classList.add('show');
     });
-    console.log(item.dataset);
 })
-
-
-closeModal[0].addEventListener('click', function() {
-    modal[0].classList.remove('show')
+// закрытие модалки
+closeModal.addEventListener('click', function() {
+    modal.classList.remove('show')
 });
+
+// добавление списка
+const addList = () => {
+    const mapList = ["сиськи", "письки", "жопки"];
+    const contentListInModal = document.createElement('ul');
+    const newMapList = mapList.map((item) => {
+        const contentItemInList = document.createElement('li');
+        contentModal.append(contentListInModal);
+        contentListInModal.append(contentItemInList);
+        return contentItemInList.innerHTML = item;
+    })
+    console.log(newMapList);
+}
+
+addList();
