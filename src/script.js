@@ -28,13 +28,14 @@ closeModal.addEventListener('click', function() {
 
 // добавление списка
 const addList = () => {
-    const mapList = ["сиськи", "письки", "жопки"];
+    const mapList = ["крутой", "неимоверный", "потрясающий"];
     const contentListInModal = document.createElement('ul');
     const newMapList = mapList.map((item) => {
         const contentItemInList = document.createElement('li');
         contentModal.append(contentListInModal);
         contentListInModal.append(contentItemInList);
-        return contentItemInList.innerHTML = item;
+        contentItemInList.innerHTML = item;
+        return contentItemInList;
     })
     console.log(newMapList);
 }
