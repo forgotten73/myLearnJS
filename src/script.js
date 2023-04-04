@@ -27,17 +27,17 @@ closeModal.addEventListener('click', function() {
 });
 
 // добавление списка
-const addList = () => {
+const addList = (list) => {
     const mapList = ["крутой", "неимоверный", "потрясающий"];
-    const contentListInModal = document.createElement('ul');
-    const newMapList = mapList.map((item) => {
+    const wordsArray = ["первый", "второй", "третий", "четвертый", "пятый"];
+    const contentListInModal = document.createElement(list);
+    const newMapList = [...mapList, ...wordsArray].map((item) => {
         const contentItemInList = document.createElement('li');
         contentModal.append(contentListInModal);
         contentListInModal.append(contentItemInList);
         contentItemInList.innerHTML = item;
         return contentItemInList;
     })
-    console.log(newMapList);
+    return newMapList;
 }
-
-addList();
+console.log(addList('ul'));
